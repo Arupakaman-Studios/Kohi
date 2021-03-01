@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".uiModules.home.ActivityHome">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        >
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:id="@+id/ivKohiLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@drawable/ic_kohi_outline"
+            app:tint="?colorIconNormal"
+            android:contentDescription="@string/cont_desc_kohi_app_logo"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMsgHomeOne"
+            app:layout_constraintTop_toBottomOf="@id/ivKohiLogo"
+            android:layout_marginTop="15dp"
+            android:textColor="?colorTextMain"
+            android:text="@string/msg_home_one"
+            android:paddingHorizontal="16dp"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvMsgHomeOne"
+            android:id="@+id/tvMsgHomeTwo"
+            android:layout_marginTop="2dp"
+            android:textColor="?colorTextMain"
+            android:text="@string/msg_home_two"
+            android:paddingHorizontal="16dp"
+            />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/btnKohiToggle"
+            style="@style/Theme.Kohi.ClickableBorderLess"
+            app:layout_constraintTop_toBottomOf="@id/tvMsgHomeTwo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            app:tint="?colorIconNormal"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_power"
+            android:contentDescription="@string/cont_desc_kohi_toggle_button"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/btnSettings"
+            style="@style/Theme.Kohi.ClickableBorderLess"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnKohiToggle"
+            app:layout_constraintBottom_toBottomOf="@id/btnKohiToggle"
+            app:srcCompat="@drawable/ic_settings"
+            app:tint="?colorIconNormal"
+            android:contentDescription="@string/cont_desc_settings_button"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/btnAbout"
+            style="@style/Theme.Kohi.ClickableBorderLess"
+            app:layout_constraintStart_toEndOf="@id/btnKohiToggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btnKohiToggle"
+            app:srcCompat="@drawable/ic_info"
+            app:tint="?colorIconNormal"
+            android:contentDescription="@string/cont_desc_about_button"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGetDonationVersion"
+            app:layout_constraintTop_toBottomOf="@id/btnKohiToggle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            app:backgroundTint="?colorButtonTint"
+            android:text="@string/action_get_donation_version"
+            android:textColor="@color/colorTest4"
+            android:textAllCaps="false"
+            style="@style/Theme.Kohi.MaterialButton"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

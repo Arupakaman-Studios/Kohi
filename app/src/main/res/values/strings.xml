@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name" translatable="false">Kohi</string>
+
+    <!-- Non-Translatable -->
+    <string name="notification_channel_name" translatable="false">kohi_foreground_service</string>
+    <string name="default_notification_channel_id" translatable="false">kohi_fb_notification_channel</string>
+
+    <string name="english" translatable="false">English</string>
+    <string name="japanese" translatable="false">日本語</string>
+    <string name="korean" translatable="false">한국어</string>
+    <string name="hindi" translatable="false">हिन्दी</string>
+    <string name="russian" translatable="false">Русский</string>
+    <string name="spanish" translatable="false">Espagnol</string>
+    <string name="french" translatable="false">Français</string>
+    <string name="chinese" translatable="false">中国</string>
+
+    <string name="english_code" translatable="false">en</string>
+    <string name="japanese_code" translatable="false">ja</string>
+    <string name="korean_code" translatable="false">ko</string>
+    <string name="hindi_code" translatable="false">hi</string>
+    <string name="russian_code" translatable="false">ru</string>
+    <string name="spanish_code" translatable="false">es</string>
+    <string name="french_code" translatable="false">fr</string>
+    <string name="chinese_code" translatable="false">zh</string>
+
+
+    <string name="key_ad_mob_app_id" translatable="false">ca-app-pub-7574266774319612~6832526100</string>
+    <string name="key_ad_mob_banner_home_unit_id" translatable="false">ca-app-pub-7574266774319612/4206362761</string>
+    <string name="key_ad_mob_interstitial_home_unit_id" translatable="false">ca-app-pub-7574266774319612/7379321014</string>
+
+    <string name="email_publisher" translatable="false">arupakamanstudios@gmail.com</string>
+    <string name="donate_version_pkg_name" translatable="false">com.arupakaman.kohi.donate</string>
+
+    <!-- Actions -->
+    <string name="action_turn_on">Turn On</string>
+    <string name="action_get_donation_version">Get Donation (Ad Free) Version</string>
+    <string name="action_select">Select</string>
+    <string name="action_cancel">Cancel</string>
+
+    <!-- Titles -->
+    <string name="title_display_on_service">Display on service</string>
+    <string name="title_restore_on_boot">Restore state after device startup</string>
+    <string name="title_restore_on_unlock">Restore state on unlock</string>
+    <string name="title_theme">Theme</string>
+    <string name="title_system">System</string>
+    <string name="title_light">Light</string>
+    <string name="title_dark">Dark</string>
+    <string name="title_optimization">Optimization</string>
+    <string name="title_disable_on_low_battery">Auto disable on low battery</string>
+    <string name="title_disable_battery_optimization">Disable battery optimization</string>
+    <string name="title_disabled_battery_optimization">Battery optimization already disabled</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_other">Other</string>
+    <string name="title_add_shortcut">Add shortcut to home screen</string>
+    <string name="title_toggle_kohi">Toggle Kohi</string>
+    <string name="title_select_language_colon">Select language : </string>
+    <string name="title_stop_on_lock">Stop on lock</string>
+    <string name="title_about_us">About Us</string>
+    <string name="title_contact_us">Contact Us</string>
+    <string name="title_donate">Donate</string>
+    <string name="title_change_language">Change language</string>
+    <string name="title_share_via">Share via :</string>
+    <string name="title_send_via">Send via :</string>
+
+    <!-- Messages -->
+    <string name="msg_home_one">With Kohi you can quickly toggle the setting to keep the display awake without the trouble of going through the settings.</string>
+    <string name="msg_home_two">It can be toggled via the tiles in the quick settings panel(add Kohi by editing quick tiles) or from the Kohi home screen. You can also create a shortcut to quickly toggle Kohi service from the Kohi Settings screen. Kohi can be stopped by tapping on the notification status as well.</string>
+    <string name="msg_tap_to_turn_off">Tap to turn off</string>
+    <string name="msg_keeping_display_on">Keeping display on</string>
+    <string name="msg_kohi_started">Kohi Started</string>
+    <string name="msg_shortcut_add_success">Shortcut added</string>
+    <string name="msg_shortcut_add_failed">Failed adding shortcut!</string>
+    <string name="msg_donate">Donate to support development of these free apps!</string>
+    <string name="msg_share_kohi_app">Hey, \nWith Kohi you can quickly toggle the setting to keep the display awake without the trouble of going through the settings. Get it from : \n</string>
+    <string name="msg_about_us">Kohi is developed by Arupakaman Studios. Arupakaman Studios is a group of independent developers working on various applications and services. \nYou can send us your feedback and app suggestions via email.</string>
+    <string name="msg_enter_your_message">Enter your message…</string>
+
+    <!-- Error Messages -->
+    <string name="err_msg_general">Something went wrong!</string>
+
+    <!-- Description -->
+    <string name="desc_restore_on_boot">When enabled Kohi will restore the display state after device startup.</string>
+    <string name="desc_restore_on_unlock">Kohi will restore the display on state on device unlock.</string>
+    <string name="desc_disable_on_low_battery">Kohi service will be disabled while on low battery.</string>
+    <string name="desc_disable_battery_optimization">Prevent Kohi from being killed by battery optimization.</string>
+    <string name="desc_add_shortcut">Add a quick toggle on the home screen.</string>
+    <string name="desc_current_language_colon">Current language : </string>
+    <string name="desc_stop_on_lock">When enabled Kohi will stop the service when the device is locked. (Restore state on boot might not work properly)</string>
+
+    <!-- Content Description -->
+    <string name="cont_desc_kohi_app_logo">Kohi app logo</string>
+    <string name="cont_desc_kohi_toggle_button">Kohi toggle button</string>
+    <string name="cont_desc_settings_button">Settings button</string>
+    <string name="cont_desc_about_button">About us button</string>
+    <string name="cont_desc_rate_app_button">Rate app button</string>
+    <string name="cont_desc_more_apps_button">More apps button</string>
+    <string name="cont_desc_share_button">Share app button</string>
+
+
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <!-- <style name="ShapeAppearanceOverlay.MaterialButton.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>-->
+
+    <style name="Theme.Kohi.MaterialButton" parent="Widget.MaterialComponents.Button">
+        <item name="iconSize">24dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">0dp</item>
+    </style>
+
+    <style name="Theme.Kohi.ClickableBorderLess">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+</resources>

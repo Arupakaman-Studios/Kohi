@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_about_us">हमारे बारे में</string>
+    <string name="title_settings">सेटिंग्स</string>
+
+    <string name="action_turn_on">चालू करो</string>
+    <string name="action_get_donation_version">डोनेट (विज्ञापन मुक्त) वर्जन प्राप्त करें</string>
+    <string name="action_select">चयन करें</string>
+    <string name="action_cancel">रद्द करें</string>
+
+    <string name="title_display_on_service">डिस्प्ले चालू सर्विस</string>
+    <string name="title_restore_on_boot">डिवाइस स्टार्टअप के बाद स्थिति को पुनर्स्थापित करें</string>
+    <string name="title_restore_on_unlock">अनलॉक पर स्थिति को पुनर्स्थापित करें</string>
+    <string name="title_theme">थीम</string>
+    <string name="title_dark">डार्क</string>
+    <string name="title_light">लाइट</string>
+    <string name="title_system">सिस्टम</string>
+    <string name="title_optimization">ऑप्टिमाइज़ेशन</string>
+    <string name="title_disable_on_low_battery">कम बैटरी पर ऑटो बंद</string>
+    <string name="title_disable_battery_optimization">बैटरी ऑप्टिमाइज़ेशन बंद करें</string>
+    <string name="title_disabled_battery_optimization">बैटरी ऑप्टिमाइज़ेशन पहले से ही बंद है</string>
+    <string name="title_other">अन्य</string>
+    <string name="title_add_shortcut">होम स्क्रीन पर शॉर्टकट जोड़ें</string>
+    <string name="title_toggle_kohi">तोगल Kohi</string>
+    <string name="title_select_language_colon">भाषा का चयन करें :</string>
+    <string name="title_stop_on_lock">लॉक पर बंद करो</string>
+    <string name="title_contact_us">संपर्क करें</string>
+    <string name="title_donate">डोनेट</string>
+    <string name="title_change_language">भाषा बदलें</string>
+    <string name="title_share_via">शेयर करें :</string>
+    <string name="title_send_via">इसके द्वारा भेजें :</string>
+
+    <string name="msg_home_two">इसे क्विक सेटिंग्स पैनल (Kohi को एडिटिंग टाईल्स को एडिट करके) या Kohi होम स्क्रीन से टाइल्स के जरिए टॉगल किया जा सकता है। आप कोही सेटिंग्स स्क्रीन से कोही सेवा को जल्दी से चालू करने के लिए एक शॉर्टकट भी बना सकते हैं। साथ ही सूचना की स्थिति पर टैप करके Kohi को रोका जा सकता है।</string>
+    <string name="msg_home_one">Kohi के साथ आप सेटिंग के माध्यम से जाने की परेशानी के बिना डिस्प्ले को चालू रखने के लिए सेटिंग को जल्दी से चालू कर सकते हैं।</string>
+    <string name="msg_tap_to_turn_off">बंद करने के लिए टैप करें</string>
+    <string name="msg_keeping_display_on">डिस्प्ले चालू हे</string>
+    <string name="msg_kohi_started">Kohi शुरू कर दिया है</string>
+    <string name="msg_shortcut_add_success">शॉर्टकट जोड़ा गया</string>
+    <string name="msg_shortcut_add_failed">शॉर्टकट जोड़ने में विफल!</string>
+    <string name="msg_donate">इन मुफ्त ऐप्स के विकास का समर्थन करने के लिए डोनेट करें!</string>
+    <string name="msg_share_kohi_app">नमस्ते, \nKohi के साथ आप सेटिंग के माध्यम से जाने की परेशानी के बिना डिस्प्ले को चालू रखने के लिए सेटिंग को जल्दी से चालू कर सकते हैं। इसे यहाँ से प्राप्त करें: \n</string>
+    <string name="msg_about_us">Kohi का विकास Arupakaman Studios द्वारा किया गया है। Arupakaman Studios विभिन्न अनुप्रयोगों और सेवाओं पर काम करने वाले स्वतंत्र डेवलपर्स का एक समूह है। आप अपनी प्रतिक्रिया और ऐप सुझाव हमें ईमेल के माध्यम से भेज सकते हैं।</string>
+    <string name="msg_enter_your_message">अपना संदेश दर्ज करें…</string>
+
+    <string name="err_msg_general">कुछ गलत हो गया!</string>
+
+    <string name="desc_restore_on_boot">जब सक्षम Kohi डिवाइस स्टार्टअप के बाद डिस्प्ले स्थिति को बहाल करेगा।</string>
+    <string name="desc_restore_on_unlock">Kohi डिवाइस अनलॉक पर राज्य पर प्रदर्शन को पुनर्स्थापित करेगा।</string>
+    <string name="desc_disable_on_low_battery">कम बैटरी होने पर Kohi सेवा को निष्क्रिय कर दिया जाएगा।</string>
+    <string name="desc_disable_battery_optimization">Kohi को बैटरी ऑप्टिमाइज़ेशन द्वारा रोके जाने से रोकें।</string>
+    <string name="desc_add_shortcut">होम स्क्रीन पर एक त्वरित टॉगल जोड़ें।</string>
+    <string name="desc_current_language_colon">वर्तमान भाषा:</string>
+    <string name="desc_stop_on_lock">जब सक्षम Kohi डिवाइस लॉक हो जाता है तो सेवा बंद हो जाएगी। (बूट पर स्थिति पुनर्स्थापित करना ठीक से काम नहीं कर सकता है)</string>
+
+    <string name="cont_desc_kohi_app_logo">Kohi ऐप लोगो</string>
+    <string name="cont_desc_kohi_toggle_button">Kohi टॉगल बटन</string>
+    <string name="cont_desc_settings_button">सेटिंग्स बटन</string>
+    <string name="cont_desc_about_button">हमारे बारे में बटन</string>
+    <string name="cont_desc_rate_app_button">रेट एप्लिकेशन बटन</string>
+    <string name="cont_desc_more_apps_button">अन्य एप्लिकेशन बटन</string>
+    <string name="cont_desc_share_button">शेयर ऐप बटन</string>
+
+</resources>

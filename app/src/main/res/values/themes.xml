@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Kohi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorCoffeeLight</item>
+        <item name="colorPrimaryVariant">@color/colorCoffeeLight</item>
+        <item name="colorOnPrimary">@color/colorCoffeeLight</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorCoffeeLight</item>
+        <item name="colorSecondaryVariant">@color/colorCoffeeLight</item>
+        <item name="colorOnSecondary">@color/colorCoffeeLight</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="lollipop">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">?attr/colorPrimaryVariant</item>
+
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorCoffee</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/colorWhite</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorThemeBackground">@color/colorCoffeeLight</item>
+        <item name="colorTextDark">@color/colorCoffeeDark</item>
+        <item name="colorTextMain">@color/colorCoffeeDark</item>
+        <item name="colorTextSecondary">@color/colorWhite</item>
+        <item name="colorIconNormal">@color/colorWhite</item>
+        <item name="colorIconActive">@color/colorCoffee</item>
+        <item name="colorButtonTint">@color/colorCoffee</item>
+
+        <item name="android:windowBackground">@color/colorCoffeeLight</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+</resources>
