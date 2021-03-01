@@ -31,8 +31,8 @@ You can send us your feedback and app suggestions via email.
 
 ## Contact Us
 
-Contact us at: [arupakamanstudios@gmail.com](mailto:arupakamanstudios@gmail.com)
+Contact us at: arupakamanstudios[AT]gmail[DOT]com
 
 ## Licensing
 
-Slide is licensed under the [GNU v3 Public License.](LICENSE)
+Kohi is licensed under the [GNU v3 Public License.](LICENSE)
