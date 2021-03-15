@@ -16,6 +16,14 @@ Kohi – Features
 - Disable when device is locked
 - Auto start service after device start up
 
+Kohi is available on the Google Play Store.  
+<a href="https://play.google.com/store/apps/details?id=com.arupakaman.kohi">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+</a>
+
+
 <div style="display:flex;">
 <img alt="App image" src="assets/02.png" width="30%">
 <img alt="App image" src="assets/04.png" width="30%">
@@ -35,4 +43,4 @@ Contact us at: arupakamanstudios[AT]gmail[DOT]com
 
 ## Licensing
 
-Kohi is licensed under the [GNU v3 Public License.](LICENSE)
+Kohi is licensed under the [MIT License.](LICENSE)

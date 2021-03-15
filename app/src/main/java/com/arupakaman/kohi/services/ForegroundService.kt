@@ -154,6 +154,7 @@ class ForegroundService : Service() {
 
     override fun onDestroy() {
         Log.d(TAG, "onDestroy()")
+        isRunning = false
         super.onDestroy()
         mWakeLock?.release()
         if (isPhoneStateListenerRegistered) {

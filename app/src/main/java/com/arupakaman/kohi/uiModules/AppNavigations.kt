@@ -37,16 +37,19 @@ fun Context.openAppInPlayStore(id: String){
     }
 }
 
-fun Context.openContactMail(){
-    kotlin.runCatching {
-        val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+getString(R.string.email_publisher)))
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, getString(R.string.email_publisher))
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
-        emailIntent.putExtra(Intent.EXTRA_TEXT, KohiRes.getString(R.string.msg_enter_your_message))
-        val packageManager = packageManager
 
-        if (emailIntent.resolveActivity(packageManager) != null){
-            startActivity(Intent.createChooser(emailIntent, KohiRes.getString(R.string.title_send_via)))
+fun Context.openContactMail(msg: String? = null){
+    kotlin.runCatching {
+        Intent(Intent.ACTION_SENDTO).let { emailIntent ->
+            emailIntent.data = Uri.parse("mailto:")
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.email_publisher)))
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+            emailIntent.putExtra(Intent.EXTRA_TEXT, msg ?: AikonRes.getString(R.string.msg_enter_your_message))
+            val packageManager = packageManager
+
+            if (emailIntent.resolveActivity(packageManager) != null) {
+                startActivity(Intent.createChooser(emailIntent, AikonRes.getString(R.string.title_send_via)))
+            }
         }
     }
 }
