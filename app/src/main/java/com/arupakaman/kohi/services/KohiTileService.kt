@@ -9,9 +9,12 @@ import android.service.quicksettings.Tile.STATE_INACTIVE
 import android.service.quicksettings.TileService
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.os.bundleOf
 import com.arupakaman.kohi.KohiApp
 import com.arupakaman.kohi.data.KohiSharedPrefs
 import com.arupakaman.kohi.utils.invoke
+import com.arupakaman.kohi.utils.setFirebaseAnalyticsLogEvent
+import com.google.firebase.analytics.FirebaseAnalytics
 
 @RequiresApi(Build.VERSION_CODES.N)
 class KohiTileService : TileService() {
@@ -22,6 +25,7 @@ class KohiTileService : TileService() {
         Log.d(TAG, "onClick $isRunning")
         mPrefs.wasForegroundServiceRunningOnLock = false
         ForegroundService.startOrStopService(applicationContext, !isRunning)
+        applicationContext.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Kohi_Toggle_Tile" to "is_on_$isRunning"))
     }
 
     override fun onStartListening() {

@@ -68,4 +68,8 @@
     <string name="cont_desc_share_button">Кнопка "Поделиться приложением"</string>
 
 
+    <string name="action_grant">Грант</string>
+    <string name="title_permission_required">Требуется разрешение!</string>
+    <string name="desc_write_settings_permission">Кохи необходимо изменить разрешение в системных настройках, чтобы изменить время ожидания экрана. \NДля работы приложения необходимо предоставить разрешение.</string>
+
 </resources>

@@ -68,4 +68,10 @@
     <string name="cont_desc_share_button">アプリ共有ボタン</string>
 
 
+
+    <string name="action_grant">付与</string>
+    <string name="title_permission_required">許可が必要です！</string>
+    <string name="desc_write_settings_permission">画面のタイムアウトを変更するには、Kohiがシステム設定の権限を変更する必要があります。\nアプリケーションを機能させるには、権限を付与する必要があります。</string>
+
+
 </resources>

@@ -61,4 +61,11 @@
     <string name="cont_desc_more_apps_button">अन्य एप्लिकेशन बटन</string>
     <string name="cont_desc_share_button">शेयर ऐप बटन</string>
 
+
+
+    <string name="action_grant">अनुदान</string>
+    <string name="title_permission_required">अनुमति की आवश्यकता है!</string>
+    <string name="desc_write_settings_permission">कोही को स्क्रीन टाइमआउट बदलने के लिए सिस्टम सेटिंग्स अनुमति को संशोधित करने की आवश्यकता है।\nएप्लिकेशन को काम करने के लिए अनुमति दी जानी चाहिए।</string>
+
+
 </resources>

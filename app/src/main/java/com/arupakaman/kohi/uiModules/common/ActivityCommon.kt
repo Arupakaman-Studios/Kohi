@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.arupakaman.kohi.R
 import com.arupakaman.kohi.databinding.ActivityCommonBinding
-import com.arupakaman.kohi.databinding.ActivityHomeBinding
 import com.arupakaman.kohi.services.ForegroundService
 import com.arupakaman.kohi.uiModules.about.FragmentAbout
 import com.arupakaman.kohi.uiModules.base.BaseAppCompatActivity
@@ -18,7 +17,6 @@ import com.arupakaman.kohi.utils.invoke
 class ActivityCommon : BaseAppCompatActivity() {
 
     companion object{
-        const val REQUEST_CODE_SETTINGS = 1002
 
         const val KEY_FRAG_NAME_SETTINGS = "settings"
         const val KEY_FRAG_NAME_ABOUT = "about"

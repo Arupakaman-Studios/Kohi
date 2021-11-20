@@ -3,10 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.arupakaman.kohi">
 
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+        </intent>
+
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+        </intent>
+    </queries>
 
     <application
         android:name=".KohiApp"
@@ -17,9 +38,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kohi"
         tools:ignore="AllowBackup">
-        <!-- Activities -->
-        <activity android:name=".uiModules.home.ActivityHome"
-            android:screenOrientation="portrait">
+
+        <activity
+            android:name=".uiModules.home.ActivityHome"
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,13 +52,15 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".uiModules.invisibleActivity.ActivityInvisible"
             android:launchMode="singleInstance"
             android:noHistory="true"
             android:theme="@android:style/Theme.NoDisplay" />
 
-        <activity android:name=".uiModules.common.ActivityCommon"
+        <activity
+            android:name=".uiModules.common.ActivityCommon"
             android:screenOrientation="portrait" />
 
         <!-- Services -->
@@ -43,7 +68,8 @@
             android:name=".services.KohiTileService"
             android:icon="@drawable/ic_kohi_outline"
             android:label="@string/app_name"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -61,24 +87,13 @@
         <receiver
             android:name=".broadcastReceivers.BroadcastReceiverBootCompleted"
             android:directBootAware="true"
-            android:exported="false"
-            >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-
-        <!--<receiver
-            android:name=".broadcastReceivers.BroadcastReceiverScreenUnlock"
-            android:exported="false"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>-->
-
     </application>
 
 </manifest>

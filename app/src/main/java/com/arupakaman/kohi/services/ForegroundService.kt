@@ -12,14 +12,19 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import android.provider.Settings
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.arupakaman.kohi.BuildConfig
+import com.arupakaman.kohi.KohiApp
 import com.arupakaman.kohi.R
 import com.arupakaman.kohi.data.KohiSharedPrefs
 import com.arupakaman.kohi.utils.KohiRes
+import com.arupakaman.kohi.utils.reportExceptionToCrashlytics
+import com.arupakaman.kohi.utils.setFirebaseAnalyticsLogEvent
 
 class ForegroundService : Service() {
 
@@ -33,19 +38,23 @@ class ForegroundService : Service() {
         var isRunning = false
 
         fun startOrStopService(mContext: Context, start: Boolean) {
-            Log.d(TAG, "startOrStop start -> $start")
             val mPrefs = KohiSharedPrefs.getInstance(mContext)
+            Log.d(TAG, "startOrStop start -> $start ${getCurrentTimeout(mContext)}  ${getOriginalTimeout(mContext, mPrefs)}")
             mPrefs.isForegroundServiceRunning = start
             Intent(mContext, ForegroundService::class.java).let { intent->
                 if (start) {
+                    setOriginalTimeout(getOriginalTimeout(mContext, mPrefs), mPrefs)
                     ContextCompat.startForegroundService(mContext, intent)
                     if (BuildConfig.isAdsOn && mPrefs.toggleClickCount < 6){
                         mPrefs.toggleClickCount = mPrefs.toggleClickCount+1
                     }
+                    mContext.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Kohi_Toggle" to "On"))
                 } else {
                     mContext.stopService(intent)
+                    setTimeout(mContext, getOriginalTimeout(mContext, mPrefs))
                     LocalBroadcastManager.getInstance(mContext).sendBroadcast(
                         getForegroundServiceToggleIntent(false))
+                    mContext.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Kohi_Toggle" to "Off"))
                 }
                 isRunning = start
             }
@@ -53,6 +62,38 @@ class ForegroundService : Service() {
 
         fun getForegroundServiceToggleIntent(isRunning: Boolean) = Intent(ACTION_FOREGROUND_SERVICE_TOGGLE).apply {
             putExtra(EXTRA_FOREGROUND_SERVICE_TOGGLE_RUNNING, isRunning)
+        }
+
+
+        fun getOriginalTimeout(mContext: Context, mPrefs: KohiSharedPrefs): Int {
+            val origTimeout = mPrefs.origTimeout
+            return if (origTimeout == 0) {
+                getCurrentTimeout(mContext)
+            } else {
+                origTimeout
+            }
+        }
+
+        fun setOriginalTimeout(value: Int, mPrefs: KohiSharedPrefs) {
+            mPrefs.origTimeout = value
+        }
+
+        fun getCurrentTimeout(mContext: Context): Int {
+            return Settings.System.getInt(mContext.contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, 60000)
+        }
+
+        fun setTimeout(mContext: Context, timeout: Int) {
+            Log.d(TAG, "setTimeout -> $timeout")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.System.canWrite(mContext))
+                Settings.System.putInt(mContext.contentResolver, Settings.System.SCREEN_OFF_TIMEOUT, timeout)
+        }
+
+        fun updateInitialTimeout(mContext: Context, mPrefs: KohiSharedPrefs){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.System.canWrite(mContext)) {
+                val currTimeOut = getCurrentTimeout(mContext)
+                if (currTimeOut != Int.MAX_VALUE)
+                    setOriginalTimeout(getCurrentTimeout(mContext), mPrefs)
+            }
         }
 
     }
@@ -130,12 +171,24 @@ class ForegroundService : Service() {
             Log.d(TAG, "Received ACTION_STOP")
             mPrefs.wasForegroundServiceRunningOnLock = false
             startOrStopService(this, false)
+            return START_NOT_STICKY
         }
 
-        @Suppress("DEPRECATION")
-        mWakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager)
-            .newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "Kohi::ForegroundService")
-        mWakeLock?.acquire()
+        fun wakeLockScreenOn(){
+            @Suppress("DEPRECATION")
+            mWakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager)
+                .newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "Kohi::ForegroundService")
+            mWakeLock?.acquire()
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.System.canWrite(applicationContext)){
+            kotlin.runCatching {
+                setTimeout(applicationContext, Int.MAX_VALUE)
+            }.onFailure {
+                wakeLockScreenOn()
+                it.reportExceptionToCrashlytics("Screen_On_Time_Change_Failed____Falling_Back_To_Wake_Lock")
+            }
+        }else wakeLockScreenOn()
 
         mPrefs.isForegroundServiceRunning = true
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

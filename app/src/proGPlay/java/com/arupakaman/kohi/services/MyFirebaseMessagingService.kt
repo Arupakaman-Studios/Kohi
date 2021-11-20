@@ -5,7 +5,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
@@ -13,7 +12,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.arupakaman.kohi.R
-import com.arupakaman.kohi.uiModules.home.ActivityHome
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import java.util.concurrent.atomic.AtomicInteger
@@ -49,7 +47,27 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         Log.v(TAG, "ContentNotif 2 $notification \n $data")
 
         kotlin.runCatching {
-            sendNotification(p0.notification)
+            if (p0.data["body"] == null) {
+                p0.notification?.let {data->
+                    val title = data.title ?: getString(R.string.app_name)
+                    var body = data.body ?: ""
+                    var id = "Arupakaman+Studios"
+                    kotlin.runCatching {
+                        if (body.contains("::")) {
+                            body.split("::").let {
+                                body = it[0]
+                                id = it[1]
+                            }
+                        }
+                    }
+                    sendNotification(title, body, id, null)
+                }
+            }else {
+                p0.runCatching {
+                    sendNotification(data["title"]?: getString(R.string.app_name),
+                        data["body"]?:"", (data["id"]?:"Arupakaman+Studios"), data["url"])
+                }
+            }
         }.onFailure {
             Log.e(TAG, "Notification Send Exc $it")
         }
@@ -66,24 +84,11 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         super.onDestroy()
     }
 
-    private fun sendNotification(data: RemoteMessage.Notification?) {
+    private fun sendNotification(title: String, body: String, id: String?, url: String?) {
 
         val channelId = getString(R.string.default_notification_channel_id)
 
-        val title = data?.title?:getString(R.string.app_name)
-        var body = data?.body?:""
-
-        var id = "Arupakaman+Studios"
-        kotlin.runCatching {
-            if (body.contains("::")) {
-                body.split("::").let {
-                    body = it[0]
-                    id = it[1]
-                }
-            }
-        }
-
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$id"))
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url?:("https://play.google.com/store/apps/details?id=$id")))
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent,
             PendingIntent.FLAG_ONE_SHOT

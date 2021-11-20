@@ -68,4 +68,9 @@
     <string name="cont_desc_share_button">Bouton Partager l\'application</string>
 
 
+    <string name="action_grant">Accorder</string>
+    <string name="title_permission_required">Autorisation requise !</string>
+    <string name="desc_write_settings_permission">Kohi doit modifier l\'autorisation des paramètres système pour modifier le délai d\'expiration de l\'écran.\nL\'autorisation doit être accordée pour que l\'application fonctionne.</string>
+
+
 </resources>

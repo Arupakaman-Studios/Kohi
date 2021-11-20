@@ -6,19 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import com.arupakaman.kohi.BuildConfig
+import com.arupakaman.kohi.KohiApp
 import com.arupakaman.kohi.R
-import com.arupakaman.kohi.data.KohiSharedPrefs
 import com.arupakaman.kohi.databinding.FragmentAboutBinding
 import com.arupakaman.kohi.uiModules.base.BaseFragment
 import com.arupakaman.kohi.uiModules.openArupakamanPlayStore
 import com.arupakaman.kohi.uiModules.openContactMail
 import com.arupakaman.kohi.uiModules.openDonationVersion
-import com.arupakaman.kohi.utils.AppReviewUtil
+import com.arupakaman.kohi.utils.GooglePlayUtils
 import com.arupakaman.kohi.utils.KohiRes
 import com.arupakaman.kohi.utils.invoke
 import com.arupakaman.kohi.utils.isUnderlined
+import com.arupakaman.kohi.utils.setFirebaseAnalyticsLogEvent
 import com.arupakaman.kohi.utils.setSafeOnClickListener
 
 
@@ -35,7 +37,7 @@ class FragmentAbout : BaseFragment() {
     private val mBinding by lazy { FragmentAboutBinding.inflate(layoutInflater) }
     //private val mPrefs by lazy { KohiSharedPrefs.getInstance(mActivity.applicationContext) }
 
-    private lateinit var mAppReviewUtil: AppReviewUtil
+    private lateinit var mGooglePlayUtils: GooglePlayUtils
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,28 +52,33 @@ class FragmentAbout : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding {
 
-            mAppReviewUtil = AppReviewUtil(mActivity)
+            mGooglePlayUtils = GooglePlayUtils(mActivity)
 
             btnRateApp.setSafeOnClickListener {
-               mAppReviewUtil.askForReview()
+               mGooglePlayUtils.askForReview()
+                mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Review" to "Asked"))
             }
 
             btnGetDonationVersion.setSafeOnClickListener {
                 mActivity.openDonationVersion()
+                mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Donation_Version" to "Clicked"))
             }
             btnGetDonationVersion.isVisible = BuildConfig.isAdsOn || BuildConfig.isFDroid
 
             btnShare.setSafeOnClickListener {
                 shareApp()
+                mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Shared" to "Shared"))
             }
 
             btnMoreApps.setSafeOnClickListener {
                 mActivity.openArupakamanPlayStore()
+                mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("More_Apps" to "More"))
             }
 
             tvMsgContact.isUnderlined = true
             tvMsgContact.setSafeOnClickListener {
                 mActivity.openContactMail()
+                mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Contact_Dev" to "Mail"))
             }
 
         }

@@ -36,6 +36,7 @@
     <string name="action_get_donation_version">Get Donation (Ad Free) Version</string>
     <string name="action_select">Select</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_grant">Grant</string>
 
     <!-- Titles -->
     <string name="title_display_on_service">Display on service</string>
@@ -61,6 +62,7 @@
     <string name="title_change_language">Change language</string>
     <string name="title_share_via">Share via :</string>
     <string name="title_send_via">Send via :</string>
+    <string name="title_permission_required">Permission required!</string>
 
     <!-- Messages -->
     <string name="msg_home_one">With Kohi you can quickly toggle the setting to keep the display awake without the trouble of going through the settings.</string>
@@ -86,6 +88,7 @@
     <string name="desc_add_shortcut">Add a quick toggle on the home screen.</string>
     <string name="desc_current_language_colon">Current language : </string>
     <string name="desc_stop_on_lock">When enabled Kohi will stop the service when the device is locked. (Restore state on boot might not work properly)</string>
+    <string name="desc_write_settings_permission">Kohi need to modify system settings permission to change screen timeout.\nPermission must be granted for the application to work.</string>
 
     <!-- Content Description -->
     <string name="cont_desc_kohi_app_logo">Kohi app logo</string>

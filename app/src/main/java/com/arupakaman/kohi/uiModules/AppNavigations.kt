@@ -3,16 +3,20 @@ package com.arupakaman.kohi.uiModules
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
-import com.arupakaman.kohi.BuildConfig
-import com.arupakaman.kohi.KohiApp
 import com.arupakaman.kohi.R
 import com.arupakaman.kohi.uiModules.common.ActivityCommon
+import com.arupakaman.kohi.uiModules.home.ActivityHome
 import com.arupakaman.kohi.utils.KohiRes
 
+fun Context.gotoHomeScreen(triggerKohi: Boolean){
+    startActivity(ActivityHome.getIntent(this, triggerKohi))
+}
 
-fun AppCompatActivity.gotoSettingsScreen(){
-    startActivityForResult(ActivityCommon.getActivityIntent(this, ActivityCommon.KEY_FRAG_NAME_SETTINGS), ActivityCommon.REQUEST_CODE_SETTINGS)
+fun AppCompatActivity.gotoSettingsScreen(launcher: ActivityResultLauncher<Intent>){
+    launcher.launch(ActivityCommon.getActivityIntent(this, ActivityCommon.KEY_FRAG_NAME_SETTINGS))
 }
 
 fun Context.gotoAboutScreen(){
@@ -24,16 +28,16 @@ fun Context.openDonationVersion(){
 }
 
 fun Context.openAppInPlayStore(id: String){
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$id"))
     val optionalIntent =  Intent(
         Intent.ACTION_VIEW,
         Uri.parse("https://play.google.com/store/apps/details?id=$id")
     )
     kotlin.runCatching {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$id"))
         if (intent.resolveActivity(packageManager) != null) startActivity(intent)
-        else startActivity(optionalIntent)
+        if (optionalIntent.resolveActivity(packageManager) != null) startActivity(optionalIntent)
     }.onFailure {
-        startActivity(optionalIntent)
+        Log.e("AppNavigation", "openAppInPlayStore Exc $it")
     }
 }
 
@@ -44,11 +48,11 @@ fun Context.openContactMail(msg: String? = null){
             emailIntent.data = Uri.parse("mailto:")
             emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.email_publisher)))
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
-            emailIntent.putExtra(Intent.EXTRA_TEXT, msg ?: AikonRes.getString(R.string.msg_enter_your_message))
+            emailIntent.putExtra(Intent.EXTRA_TEXT, msg ?: KohiRes.getString(R.string.msg_enter_your_message))
             val packageManager = packageManager
 
             if (emailIntent.resolveActivity(packageManager) != null) {
-                startActivity(Intent.createChooser(emailIntent, AikonRes.getString(R.string.title_send_via)))
+                startActivity(Intent.createChooser(emailIntent, KohiRes.getString(R.string.title_send_via)))
             }
         }
     }

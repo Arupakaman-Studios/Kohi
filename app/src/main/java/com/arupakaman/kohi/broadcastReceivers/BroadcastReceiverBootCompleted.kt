@@ -13,11 +13,12 @@ class BroadcastReceiverBootCompleted: BroadcastReceiver() {
 
     override fun onReceive(p0: Context?, p1: Intent?) {
         p0?.run {
+            val mPrefs = KohiSharedPrefs.getInstance(applicationContext)
+            ForegroundService.updateInitialTimeout(applicationContext, mPrefs)
             KohiRes.setContext(applicationContext)
             val action = p1?.action
             if (action == Intent.ACTION_BOOT_COMPLETED ||
                 action == Intent.ACTION_LOCKED_BOOT_COMPLETED) {
-                val mPrefs = KohiSharedPrefs.getInstance(applicationContext)
                 val wasRunning = mPrefs.isForegroundServiceRunning
                 val restoreOnBoot = mPrefs.restoreOnBoot
 

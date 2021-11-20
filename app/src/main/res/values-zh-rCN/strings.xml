@@ -68,4 +68,9 @@
     <string name="cont_desc_share_button">共享应用程序按钮</string>
 
 
+
+    <string name="action_grant">授予</string>
+    <string name="title_permission_required">需要權限！</string>
+    <string name="desc_write_settings_permission">Kohi 需要修改系統設置權限才能更改屏幕超時。\n必須授予權限才能使應用程序工作。</string>
+
 </resources>

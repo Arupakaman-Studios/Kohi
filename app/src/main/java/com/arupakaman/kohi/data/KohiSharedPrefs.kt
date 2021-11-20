@@ -18,6 +18,8 @@ class KohiSharedPrefs private constructor(private val mPrefs: SharedPreferences)
 
     var stopOnLock by mPrefs.data(false)
 
+    var origTimeout by mPrefs.data(0)
+
     var wasForegroundServiceRunningOnLock by mPrefs.data(false)
 
     var selectedLanguageCode by mPrefs.dataNullable<String?>()

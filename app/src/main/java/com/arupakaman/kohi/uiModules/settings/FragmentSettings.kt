@@ -18,7 +18,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import com.arupakaman.kohi.KohiApp
 import com.arupakaman.kohi.R
 import com.arupakaman.kohi.data.KohiSharedPrefs
 import com.arupakaman.kohi.databinding.FragmentSettingsBinding
@@ -28,9 +30,11 @@ import com.arupakaman.kohi.uiModules.invisibleActivity.ActivityInvisible
 import com.arupakaman.kohi.utils.KohiRes
 import com.arupakaman.kohi.utils.LocaleHelper
 import com.arupakaman.kohi.utils.invoke
+import com.arupakaman.kohi.utils.setFirebaseAnalyticsLogEvent
 import com.arupakaman.kohi.utils.setSafeOnClickListener
 import com.arupakaman.kohi.utils.toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.analytics.FirebaseAnalytics
 import java.util.*
 
 class FragmentSettings : BaseFragment() {
@@ -112,18 +116,22 @@ class FragmentSettings : BaseFragment() {
 
         switchRestoreOnBoot.setOnCheckedChangeListener { _, b ->
             mPrefs.restoreOnBoot = b
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Setting_Restore_On_Boot" to b))
         }
 
         switchRestoreOnUnlock.setOnCheckedChangeListener { _, b ->
             mPrefs.restoreOnUnlock = b
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Setting_Restore_On_Unlock" to b))
         }
 
         switchStopOnLock.setOnCheckedChangeListener { _, b ->
             mPrefs.stopOnLock = b
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Setting_Stop_On_Lock" to b))
         }
 
         switchDisableOnLowBattery.setOnCheckedChangeListener { _, b ->
             mPrefs.stopOnLowBattery = b
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("Setting_Stop_On_Low_Battery" to b))
         }
 
         clBatteryOptimization.setSafeOnClickListener {
@@ -139,6 +147,7 @@ class FragmentSettings : BaseFragment() {
             /*val isSuccess = */
             ShortcutManagerCompat.requestPinShortcut(mActivity,
                 getToggleShortCut(mActivity), null)
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Shortcut" to "Create"))
 
             // mActivity.toast(if (isSuccess) R.string.msg_shortcut_add_success else R.string.msg_shortcut_add_failed)
         }
@@ -157,6 +166,7 @@ class FragmentSettings : BaseFragment() {
                 .setPositiveButton(R.string.action_select){ dialog, _ ->
                     val selLang = LocaleHelper.getLanguageByPosition(mActivity, selLangPos)
                     LocaleHelper.setLocale(mActivity, selLang.first, selLang.second)
+                    mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Language_Update" to "${selLang.second}"))
                     dialog.dismiss()
                     mDialog = null
                     (mActivity as ActivityCommon).languageChanged = true
@@ -178,6 +188,7 @@ class FragmentSettings : BaseFragment() {
     private fun FragmentSettingsBinding.setBatteryOptimizationView(){
         val pm = mActivity.getSystemService(Context.POWER_SERVICE) as PowerManager
         if (pm.isIgnoringBatteryOptimizations(mActivity.packageName)) {
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Battery_Optimization" to true))
             clBatteryOptimization.isEnabled = false
             clBatteryOptimization.alpha = 0.4f
             tvDisableBatteryOptimizationTitle.text = KohiRes.getString(R.string.title_disabled_battery_optimization)
@@ -187,6 +198,7 @@ class FragmentSettings : BaseFragment() {
             clBatteryOptimization.alpha = 1f
             tvDisableBatteryOptimizationTitle.text = KohiRes.getString(R.string.title_disable_battery_optimization)
             tvDisableBatteryOptimizationDesc.text = KohiRes.getString(R.string.desc_disable_battery_optimization)
+            mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Battery_Optimization" to false))
         }
     }
 
@@ -211,6 +223,7 @@ class FragmentSettings : BaseFragment() {
     }
 
     private fun updateTheme(themeMode: Int){
+        mActivity.setFirebaseAnalyticsLogEvent(KohiApp.EVENT_KOHI, bundleOf("App_Theme_Update" to "$themeMode"))
         mPrefs.selectedThemeMode = themeMode
         AppCompatDelegate.setDefaultNightMode(themeMode)
         (mActivity as AppCompatActivity).delegate.applyDayNight()

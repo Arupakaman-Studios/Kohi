@@ -7,6 +7,7 @@
     <string name="action_get_donation_version">Obtenga la versión de donación (sin anuncios)</string>
     <string name="action_select">Seleccione</string>
     <string name="action_cancel">Cancelar</string>
+    <string name="action_grant">Conceder</string>
 
 
     <string name="title_display_on_service">Mostrar en servicio</string>
@@ -32,6 +33,7 @@
     <string name="title_change_language">Cambiar idioma</string>
     <string name="title_share_via">Compartir via :</string>
     <string name="title_send_via">Enviar a través de :</string>
+    <string name="title_permission_required">¡Se requiere permiso!</string>
 
 
     <string name="msg_home_one">Con Kohi puede cambiar rápidamente la configuración para mantener la pantalla activa sin la molestia de pasar por la configuración.</string>
@@ -57,6 +59,7 @@
     <string name="desc_add_shortcut">Agregue un cambio rápido en la pantalla de inicio.</string>
     <string name="desc_current_language_colon">Idioma actual :</string>
     <string name="desc_stop_on_lock">Cuando está habilitado, Kohi detendrá el servicio cuando el dispositivo esté bloqueado. (Es posible que la restauración del estado en el arranque no funcione correctamente)</string>
+    <string name="desc_write_settings_permission">Kohi necesita modificar el permiso de configuración del sistema para cambiar el tiempo de espera de la pantalla. \ NSe debe otorgar permiso para que la aplicación funcione.</string>
 
 
     <string name="cont_desc_kohi_app_logo">Logotipo de la aplicación Kohi</string>
