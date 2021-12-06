@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class KohiSharedPrefs private constructor(private val mPrefs: SharedPreferences){
+class KohiSharedPrefs private constructor(mPrefs: SharedPreferences){
 
     var isForegroundServiceRunning by mPrefs.data(false)
 
