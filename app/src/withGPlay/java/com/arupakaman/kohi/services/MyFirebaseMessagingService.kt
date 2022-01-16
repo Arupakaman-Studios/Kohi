@@ -92,7 +92,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
         val channelId = getString(R.string.default_notification_channel_id)
 
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url?:("https://play.google.com/store/apps/details?id=$id")))
-        val pendingIntent =  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val pendingIntent =  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_ONE_SHOT)
         } else {
             PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
